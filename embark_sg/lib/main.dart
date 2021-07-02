@@ -1,5 +1,6 @@
+import 'package:embark_sg/quiz_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,8 +10,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => MyHomePage(title: 'Home'),
+        '/questionnaire': (context) => QuizScreen()
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -114,6 +120,7 @@ class QuestionnaireCardWidget extends StatelessWidget {
                     child: Text('Get Started'),
                     onPressed: () {
                       print('Received Click: Get Started');
+                      Get.to(() => QuizScreen());
                     },
                   )
               )
@@ -378,10 +385,32 @@ class LearnAboutSingapore extends StatelessWidget {
   }
 }
 
-
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 0;
+
+  static List<Widget> _homePages = <Widget>[
+    ListView(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              QuestionnaireCardWidget(),
+              RoadmapCard(),
+              LearnAboutSingapore(),
+            ],
+          ),
+        ]
+    ),
+    Center(
+      child: Text('Page 2'),
+    ),
+    Center(
+      child: Text('Page 3'),
+    ),
+    Center(
+      child: Text('Page 4'),
+    ),
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -389,29 +418,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _incrementCounter() {
+  void _onNaviItemTapped(int index, PageController controller) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _selectedIndex = index;
+      controller.animateToPage(index,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.ease);
     });
-    // floatingActionButton: FloatingActionButton(
-    //   onPressed: _incrementCounter,
-    //   tooltip: 'Increment',
-    //   child: Icon(Icons.add),
-    // )
-    //
-    // Text(
-    //   'You have pushed the button this many times:',
-    // ),
-    // Text(
-    // '$_counter',
-    // style: Theme.of(context).textTheme.headline4,
-    // ),
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -426,25 +441,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: PageView(
           scrollDirection: Axis.horizontal,
           controller: controller,
-          children: <Widget> [
-            ListView(
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    QuestionnaireCardWidget(),
-                    RoadmapCard(),
-                    LearnAboutSingapore(),
-                  ],
-                ),
-              ]
-            ),
-          Center(
-            child: Text('Page 2'),
-          )]
+          onPageChanged: _onItemTapped,
+          children: _homePages
+
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        onTap: (x) {
+          _onNaviItemTapped(x, controller);
+        },
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color.fromRGBO(53, 20, 49, 1.0),
         selectedItemColor: Color.fromRGBO(239, 93, 168, 1),
@@ -469,85 +474,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
-
-      PageView(
-      scrollDirection: Axis.horizontal,
-      controller: controller,
-      children: <Widget> [
-        Scaffold(
-          appBar: AppBar(
-            // Here we take the value from the MyHomePage object that was created by
-            // the App.build method, and use it to set our appbar title.
-            centerTitle: true,
-            title: Text('Roadmap'),
-          ),
-          body: Center(
-            child: Text('Body'),
-          )
-        ),
-      ]
-    );
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     // Here we take the value from the MyHomePage object that was created by
-    //     // the App.build method, and use it to set our appbar title.
-    //     centerTitle: true,
-    //     title: Text(widget.title),
-    //   ),
-    //   body: ListView(
-    //     children: <Widget>[
-    //       Column(
-    //         // Column is also a layout widget. It takes a list of children and
-    //         // arranges them vertically. By default, it sizes itself to fit its
-    //         // children horizontally, and tries to be as tall as its parent.
-    //         //
-    //         // Invoke "debug painting" (press "p" in the console, choose the
-    //         // "Toggle Debug Paint" action from the Flutter Inspector in Android
-    //         // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-    //         // to see the wireframe for each widget.
-    //         //
-    //         // Column has various properties to control how it sizes itself and
-    //         // how it positions its children. Here we use mainAxisAlignment to
-    //         // center the children vertically; the main axis here is the vertical
-    //         // axis because Columns are vertical (the cross axis would be
-    //         // horizontal).
-    //         children: <Widget>[
-    //           QuestionnaireCardWidget(),
-    //           RoadmapCard(),
-    //           LearnAboutSingapore(),
-    //         ],
-    //       ),
-    //     ]
-    //   ),
-    //   bottomNavigationBar: BottomNavigationBar(
-    //     currentIndex: _selectedIndex,
-    //     onTap: _onItemTapped,
-    //     type: BottomNavigationBarType.fixed,
-    //     backgroundColor: Color.fromRGBO(53, 20, 49, 1.0),
-    //     selectedItemColor: Color.fromRGBO(239, 93, 168, 1),
-    //     unselectedItemColor: Color.fromRGBO(255, 181, 219, 1),
-    //     items: const <BottomNavigationBarItem>[
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.home),
-    //         label: 'Home'
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.map_outlined),
-    //         label: 'Roadmap'
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.location_history_rounded),
-    //         label: 'News'
-    //       ),
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.settings),
-    //         label: 'Settings'
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
