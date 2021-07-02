@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.green,
+        primaryColor: Color.fromRGBO(53, 20, 49, 1),
       ),
       home: MyHomePage(title: 'Home'),
     );
@@ -48,68 +48,168 @@ class MyHomePage extends StatefulWidget {
 class QuestionnaireCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Figma Flutter Generator QuestionnaireCardWidget - INSTANCE
-    return Container(
-        color: Colors.black,
-        width: 380,
-        height: 251,
-        padding: EdgeInsets.all(20),
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width - 20,
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(20),
+          decoration: new BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('img/movingtosingapore.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken)
+            ),
+            borderRadius:  new BorderRadius.all(Radius.circular(10))
+          ),
 
-        child: Column(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-                Text('Moving to Singapore', textAlign: TextAlign.center, style: TextStyle(
+              SizedBox(
+                height: 20,
+              ),
+              Text('Moving to Singapore', textAlign: TextAlign.center, style: TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   fontFamily: 'Nunito',
                   fontSize: 20,
                   letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.bold,
                   height: 1
               ), ),
-              Flexible(
-                  child: Text('Moving or returning to Singapore? Find out more about the steps you need to take before embarking on your journey!', textAlign: TextAlign.center, style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      fontFamily: 'Nunito',
-                      fontSize: 16,
-                      letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1
-                  ),)
-              ),Positioned(
-                  top: 183,
-                  left: 129,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius : BorderRadius.only(
-                        topLeft: Radius.circular(5),
-                        topRight: Radius.circular(5),
-                        bottomLeft: Radius.circular(5),
-                        bottomRight: Radius.circular(5),
-                      ),
-                      color : Color.fromRGBO(217, 217, 217, 1),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-
-                      children: <Widget>[
-                        Text('Get started', textAlign: TextAlign.center, style: TextStyle(
-                            color: Color.fromRGBO(74, 74, 74, 1),
-                            fontFamily: 'Nunito',
-                            fontSize: 16,
-                            letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
-                            fontWeight: FontWeight.normal,
-                            height: 1
-                        ),),
-
-                      ],
-                    ),
-                  )
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: Text('Moving or returning to Singapore? Find out more about the steps you need to take before embarking on your journey!', textAlign: TextAlign.center, style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
+                    fontWeight: FontWeight.normal,
+                    height: 1
+                ),)
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius : BorderRadius.all(Radius.circular(10)),
+                  color : Color.fromRGBO(217, 217, 217, 1),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                child: Text('Get started', textAlign: TextAlign.center, style: TextStyle(
+                    color: Color.fromRGBO(74, 74, 74, 1),
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
+                    fontWeight: FontWeight.normal,
+                    height: 1
+                ),),
               ),
             ]
-        )
+          )
+      )]
     );
   }
 }
+
+class RoadmapCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width - 20,
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.all(20),
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: AssetImage('img/roadmaps.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken)
+            ),
+            borderRadius: new BorderRadius.all(Radius.circular(10))
+          ),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Build your Roadmaps', textAlign: TextAlign.center, style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    fontFamily: 'Nunito',
+                    fontSize: 20,
+                    letterSpacing: 0,
+                    fontWeight: FontWeight.bold,
+                    height: 1
+                  ),)
+                ]
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: Text('Create checklists to help you plan your journey to Singapore', textAlign: TextAlign.center, style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    letterSpacing: 0,
+                    fontWeight: FontWeight.normal,
+                    height: 1
+                ),)
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  child: Text('Create a Profile and start your Roadmap', textAlign: TextAlign.center, style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Nunito',
+                      fontSize: 16,
+                      letterSpacing: 0,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.normal,
+                      height: 1
+                  ),)
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius : BorderRadius.all(Radius.circular(10)),
+                  color : Color.fromRGBO(217, 217, 217, 1),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                child: Text('Start Planning', textAlign: TextAlign.center, style: TextStyle(
+                    color: Color.fromRGBO(74, 74, 74, 1),
+                    fontFamily: 'Nunito',
+                    fontSize: 16,
+                    letterSpacing: 0 /*percentages not used in flutter. defaulting to zero*/,
+                    fontWeight: FontWeight.normal,
+                    height: 1
+                ),),
+              ),
+            ],
+          )
+        )
+      ]
+    );
+  }
+
+}
+
 
 
 
@@ -143,36 +243,32 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            QuestionnaireCardWidget(),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: Column(
+        // Column is also a layout widget. It takes a list of children and
+        // arranges them vertically. By default, it sizes itself to fit its
+        // children horizontally, and tries to be as tall as its parent.
+        //
+        // Invoke "debug painting" (press "p" in the console, choose the
+        // "Toggle Debug Paint" action from the Flutter Inspector in Android
+        // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+        // to see the wireframe for each widget.
+        //
+        // Column has various properties to control how it sizes itself and
+        // how it positions its children. Here we use mainAxisAlignment to
+        // center the children vertically; the main axis here is the vertical
+        // axis because Columns are vertical (the cross axis would be
+        // horizontal).
+        children: <Widget>[
+          QuestionnaireCardWidget(),
+          RoadmapCard(),
+          Text(
+            'You have pushed the button this many times:',
+          ),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
