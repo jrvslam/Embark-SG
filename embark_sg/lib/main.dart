@@ -426,13 +426,85 @@ class _MyHomePageState extends State<MyHomePage> {
         ]
     ),
     Center(
-      child: Text('Page 2'),
+        child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child:
+                Text("Continue Prototype here on Figma!",
+                  textAlign: TextAlign.center,
+                ),
+              )
+            ]
+
+        )
     ),
     Center(
-      child: Text('Page 3'),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child:
+            Text("Continue Prototype here on Figma!",
+              textAlign: TextAlign.center,
+            ),
+          )
+        ]
+
+    )
     ),
     Center(
-      child: Text('Page 4'),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child:
+            Text("Continue Prototype here on Figma!",
+              textAlign: TextAlign.center,
+            ),
+          )
+        ]
+
+    )
     ),
   ];
 
