@@ -27,16 +27,39 @@ class QuestionCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 question.question!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Nunito'
+                ),
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Text(
+                question.preemble!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
                     fontFamily: 'Nunito'
                 ),
               ),
@@ -48,7 +71,10 @@ class QuestionCard extends StatelessWidget {
                       (index) => Option(
                       index: index,
                       text: question.options![index],
-                      press: () => _controller.nextQuestion()
+                      press: () {
+                        _controller.checkAns(question, index);
+                        _controller.nextQuestion(index);
+                      }
                   )
               )
             ],

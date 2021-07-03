@@ -81,7 +81,15 @@ class QuestionnaireCardWidget extends StatelessWidget {
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken)
             ),
-            borderRadius:  new BorderRadius.all(Radius.circular(10))
+            borderRadius:  new BorderRadius.all(Radius.circular(10)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
           ),
 
           child: Column(
@@ -149,7 +157,15 @@ class RoadmapCard extends StatelessWidget {
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken)
             ),
-            borderRadius: new BorderRadius.all(Radius.circular(10))
+            borderRadius: new BorderRadius.all(Radius.circular(10)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
           ),
           child: Column(
             children: <Widget>[
@@ -229,7 +245,15 @@ class LearnAboutSingapore extends StatelessWidget {
             padding: EdgeInsets.all(20),
             decoration: new BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
-                borderRadius: new BorderRadius.all(Radius.circular(10))
+                borderRadius: new BorderRadius.all(Radius.circular(10)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
             ),
 
             child:

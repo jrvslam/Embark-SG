@@ -28,8 +28,8 @@ class Option extends StatelessWidget {
         return InkWell(
           onTap: press,
           child: Container(
-            margin: EdgeInsets.all(20),
-            padding: EdgeInsets.all(20),
+            margin: EdgeInsets.all(5),
+            padding: EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width - 20,
             decoration: BoxDecoration(
               color: getTheRightColor(),

@@ -1,4 +1,6 @@
+import 'package:embark_sg/persona.dart';
 import 'package:embark_sg/result_screen.dart';
+import 'package:embark_sg/returningSGduration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -29,6 +31,9 @@ class QuestionController extends GetxController
   RxInt _questionNumber = 1.obs;
   RxInt get questionNumber => this._questionNumber;
 
+  Persona _person = new Persona(id: 1);
+  Persona get person => this._person;
+
   @override
   void onInit() {
     _pageController = PageController();
@@ -44,14 +49,34 @@ class QuestionController extends GetxController
   void checkAns(Question question, int selectedIndex) {
     _isAnswered = true;
     _selectedAns = selectedIndex;
+    _person.updatePath(question.id! - 1, selectedIndex);
   }
 
-  void nextQuestion() {
+  void nextQuestion(int selectedIndex) {
     if (_questionNumber.value != _questions.length) {
       _isAnswered = false;
-      _pageController.nextPage(
-          duration: Duration(milliseconds: 500),
-          curve: Curves.ease);
+
+      // Logic
+      if (_questionNumber.value == 1 && selectedAns == 0) {
+        Get.to(ReturningFormState());
+      } else if (_questionNumber.value == 2 && selectedAns == 3) {
+        _pageController.animateToPage(3,
+            duration: Duration(milliseconds: 250),
+            curve: Curves.ease);
+      } else if (_questionNumber.value == 3) {
+        _pageController.animateToPage(4,
+            duration: Duration(milliseconds: 250),
+            curve: Curves.ease);
+      } else if (_questionNumber.value == 5 && _person.questionPath[2] == 3) {
+        _pageController.animateToPage(6,
+            duration: Duration(milliseconds: 250),
+            curve: Curves.ease);
+      } else {
+        _pageController.nextPage(
+            duration: Duration(milliseconds: 500),
+            curve: Curves.ease);
+      }
+
     } else {
       Get.to(ResultScreen());
     }
